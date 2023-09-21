@@ -2935,6 +2935,9 @@
           "projectReferences": {
             "C:\\Users\\JMTor\\source\\repos\\L.E.S\\L.E.S.Domain\\LES.Domain.csproj": {
               "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\L.E.S.Domain\\LES.Domain.csproj"
+            },
+            "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj": {
+              "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj"
             }
           }
         }
