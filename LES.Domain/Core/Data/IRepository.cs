@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LES.Domain.Core.Data
+﻿namespace LES.Domain.Core.Data
 {
-    internal class IRepository
+    public interface IRepository<TEntity, Tkey> : IDisposable where TEntity : class
     {
+        void Add(TEntity entity);
+        TEntity GetById(Tkey id);
+        void Update(TEntity entity);
+        Task<IQueryable<TEntity>> GetAll();
+        IUnitOfWork UnitOfWork { get; }
     }
 }

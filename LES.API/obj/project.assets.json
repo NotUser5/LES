@@ -1159,6 +1159,16 @@
             "rid": "win"
           }
         }
+      },
+      "LES.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/LES.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LES.Domain.dll": {}
+        }
       }
     }
   },
@@ -3331,10 +3341,16 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "LES.Domain/1.0.0": {
+      "type": "project",
+      "path": "../LES.Domain/LES.Domain.csproj",
+      "msbuildProject": "../LES.Domain/LES.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "LES.Domain >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.11",
@@ -3373,7 +3389,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj": {
+              "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

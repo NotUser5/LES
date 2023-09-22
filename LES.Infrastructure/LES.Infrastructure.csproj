@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\L.E.S.Domain\LES.Domain.csproj" />
+    <ProjectReference Include="..\LES.Domain\LES.Domain.csproj" />
   </ItemGroup>
 
 </Project>
