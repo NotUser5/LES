@@ -10,12 +10,12 @@ namespace LES.API.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IUnitOfWork _iUnitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public CategoryController(ICategoryRepository categoryRepository, IUnitOfWork iUnitOfWork)
         {
             _categoryRepository = categoryRepository;
-            _iUnitOfWork = iUnitOfWork;
+            _unitOfWork = iUnitOfWork;
         }
 
 
@@ -31,6 +31,7 @@ namespace LES.API.Controllers
             };
 
             _categoryRepository.Add(category);
+            await _unitOfWork.SaveChangesAsync();
 
             // Domain model to ViewModel
             var response = new CategoryViewModel
