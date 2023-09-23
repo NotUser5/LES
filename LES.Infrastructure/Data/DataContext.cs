@@ -1,22 +1,31 @@
 ﻿using LES.Domain.Core.Data;
 using LES.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace LES.Infrastructure.Data
 {
     public class DataContext : DbContext, IUnitOfWork
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+		protected readonly IConfiguration _configuration;
 
-        public DbSet<Product> Products { get; set; }
+		public DataContext(DbContextOptions<DataContext> options, IConfiguration configuration) : base(options) {
+			_configuration = configuration;
+		}
+
+		protected override void OnConfiguring(DbContextOptionsBuilder options)
+		{
+			options.UseSqlServer(_configuration.GetConnectionString("WebApiDatabase"));
+		}
+
+		public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Card> Cards { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Client> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Register> Registers { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Order> Orders { get; set; }
-
-    }
+	}
 }

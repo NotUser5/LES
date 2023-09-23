@@ -1,6 +1,7 @@
 ﻿using LES.Domain.Core.Data;
 using LES.Domain.Models;
 using LES.Domain.ViewModels;
+using LES.Infrastructure.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LES.API.Controllers
@@ -19,10 +20,10 @@ namespace LES.API.Controllers
         }
 
 
+        //todo: create service for business rule
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CategoryViewModel request)
         {
-            // Map ViewModel to Domain Model
             var category = new Category
             {
                 Id = Guid.NewGuid(),
@@ -33,7 +34,6 @@ namespace LES.API.Controllers
             _categoryRepository.Add(category);
             await _unitOfWork.SaveChangesAsync();
 
-            // Domain model to ViewModel
             var response = new CategoryViewModel
             {
                 Id = category.Id,
@@ -44,24 +44,11 @@ namespace LES.API.Controllers
             return Ok(response);
         }
 
-        // GET: https://localhost:7107/api/Category
+        //todo: create service for business rule
         [HttpGet]
-        public async Task<IActionResult> GetAllCategories()
+		public async Task<IActionResult> GetAllCategories()
         {
             var categories = await _categoryRepository.GetAll();
-
-            // Map Domain model to DTO
-
-            //var response = new List<CategoryDto>();
-            //foreach (var category in caterogies)
-            //{
-            //    response.Add(new CategoryDto
-            //    {
-            //        Id = category.Id,
-            //        Name = category.Name,
-            //        UrlHandle = category.UrlHandle
-            //    });
-            //}
 
             return Ok(categories);
         }
