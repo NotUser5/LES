@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repo\\fatec-les\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj": {}
+    "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\repo\\fatec-les\\LES\\LES.Domain\\LES.Domain.csproj": {
+    "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repo\\fatec-les\\LES\\LES.Domain\\LES.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj",
         "projectName": "LES.Domain",
-        "projectPath": "D:\\repo\\fatec-les\\LES\\LES.Domain\\LES.Domain.csproj",
-        "packagesPath": "C:\\Users\\corchc\\.nuget\\packages\\",
-        "outputPath": "D:\\repo\\fatec-les\\LES\\LES.Domain\\obj\\",
+        "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj",
+        "packagesPath": "C:\\Users\\JMTor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\corchc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JMTor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,6 +44,24 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.24.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.24.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -64,20 +82,20 @@
         }
       }
     },
-    "D:\\repo\\fatec-les\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj": {
+    "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repo\\fatec-les\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj",
         "projectName": "LES.Infrastructure",
-        "projectPath": "D:\\repo\\fatec-les\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\corchc\\.nuget\\packages\\",
-        "outputPath": "D:\\repo\\fatec-les\\LES\\LES.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\JMTor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\corchc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JMTor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -93,8 +111,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\repo\\fatec-les\\LES\\LES.Domain\\LES.Domain.csproj": {
-                "projectPath": "D:\\repo\\fatec-les\\LES\\LES.Domain\\LES.Domain.csproj"
+              "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj": {
+                "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj"
               }
             }
           }
@@ -109,6 +127,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.11, )"
