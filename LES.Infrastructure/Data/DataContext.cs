@@ -1,5 +1,6 @@
 ﻿using LES.Domain.Core.Data;
 using LES.Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -23,8 +24,6 @@ namespace LES.Infrastructure.Data
         public DbSet<Card> Cards { get; set; }
         public DbSet<Client> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Login> Logins { get; set; }
-        public DbSet<Register> Registers { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Order> Orders { get; set; }
 	}
