@@ -1277,6 +1277,12 @@
       "LES.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Identity.Stores": "7.0.11",
+          "Microsoft.IdentityModel.Tokens": "6.24.0",
+          "System.IdentityModel.Tokens.Jwt": "6.24.0"
+        },
         "compile": {
           "bin/placeholder/LES.Domain.dll": {}
         },
@@ -1289,6 +1295,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "LES.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Microsoft.EntityFrameworkCore": "7.0.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.11"
         },

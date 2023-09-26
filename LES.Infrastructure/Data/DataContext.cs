@@ -1,10 +1,11 @@
 ﻿using LES.Domain.Core.Data;
 using LES.Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LES.Infrastructure.Data
 {
-    public class DataContext : DbContext, IUnitOfWork
+    public class DataContext : IdentityDbContext, DbContext, IUnitOfWork
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
