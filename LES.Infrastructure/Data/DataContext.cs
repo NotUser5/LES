@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LES.Infrastructure.Data
 {
-    public class DataContext : IdentityDbContext, DbContext, IUnitOfWork
+    public class DataContext : IdentityDbContext<User>, IUnitOfWork
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 

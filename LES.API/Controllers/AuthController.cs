@@ -1,6 +1,10 @@
-﻿using LES.Domain.Core.Data;
+﻿using LES.Domain.Models;
 using LES.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace LES.API.Controllers
 {
@@ -8,77 +12,66 @@ namespace LES.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        public static User user = new User();
+        private readonly IConfiguration _configuration;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IConfiguration configuration)
         {
-            _authService = authService;
+            _configuration = configuration;
         }
 
-        // Route For Seeding my roles to DB
-        [HttpPost]
-        [Route("seed-roles")]
-        public async Task<IActionResult> SeedRoles()
+        [HttpPost("register")]
+        public ActionResult<User> Register(UserViewModel request)
         {
-            var seerRoles = await _authService.SeedRolesAsync();
+            string passwordHash
+                = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-            return Ok(seerRoles);
+            user.Email = request.Email;
+            user.PasswordHash = passwordHash;
+
+            return Ok(user);
         }
 
-
-        // Route -> Register
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel registerViewModel)
+        [HttpPost("login")]
+        public ActionResult<User> Login(UserViewModel request)
         {
-            var registerResult = await _authService.RegisterAsync(registerViewModel);
+            if (user.Email != request.Email)
+            {
+                return BadRequest("User not found.");
+            }
 
-            if (registerResult.IsSucceed)
-                return Ok(registerResult);
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+            {
+                return BadRequest("Wrong password.");
+            }
 
-            return BadRequest(registerResult);
+            string token = CreateToken(user);
+
+            return Ok(token);
         }
 
-
-        // Route -> Login
-        [HttpPost]
-        [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
+        private string CreateToken(User user)
         {
-            var loginResult = await _authService.LoginAsync(loginViewModel);
+            List<Claim> claims = new List<Claim> {
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.Role, "User"),
+            };
 
-            if (loginResult.IsSucceed)
-                return Ok(loginResult);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _configuration.GetSection("AppSettings:Token").Value!));
 
-            return Unauthorized(loginResult);
-        }
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
+            var token = new JwtSecurityToken(
+                    claims: claims,
+                    expires: DateTime.Now.AddDays(1),
+                    signingCredentials: creds
+                );
 
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-        // Route -> make user -> admin
-        [HttpPost]
-        [Route("make-admin")]
-        public async Task<IActionResult> MakeAdmin([FromBody] UpdatePermission updatePermission)
-        {
-            var operationResult = await _authService.MakeAdminAsync(updatePermission);
-
-            if (operationResult.IsSucceed)
-                return Ok(operationResult);
-
-            return BadRequest(operationResult);
-        }
-
-        // Route -> make user -> owner
-        [HttpPost]
-        [Route("make-owner")]
-        public async Task<IActionResult> MakeOwner([FromBody] UpdatePermission updatePermission)
-        {
-            var operationResult = await _authService.MakeOwnerAsync(updatePermission);
-
-            if (operationResult.IsSucceed)
-                return Ok(operationResult);
-
-            return BadRequest(operationResult);
+            return jwt;
         }
     }
 }
