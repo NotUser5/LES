@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LES.Infrastructure.Data
 {
-    public class DataContext : IdentityDbContext<User>, IUnitOfWork
+    public class DataContext : DbContext, IUnitOfWork
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
@@ -14,8 +14,6 @@ namespace LES.Infrastructure.Data
         public DbSet<Card> Cards { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Login> Logins { get; set; }
-        public DbSet<Register> Registers { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Order> Orders { get; set; }
 
