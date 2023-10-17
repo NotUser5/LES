@@ -3,5 +3,5 @@ using LES.Domain.Models;
 
 namespace LES.Infrastructure.Repository.Interfaces
 {
-	public interface IClientRepository : IRepository<Category, Guid> { }
+	public interface IClientRepository : IRepository<Client, Guid> { }
 }
