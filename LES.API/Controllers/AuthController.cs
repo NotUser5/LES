@@ -1,99 +1,97 @@
-﻿using LES.Domain.Models;
+﻿using LES.Domain.Core.Data;
+using LES.Domain.Models;
 using LES.Domain.ViewModels;
-using LES.Infrastructure.Data;
+using LES.Infrastructure.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace LES.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
-    {
-        public static User user = new User();
-        private readonly IConfiguration _configuration;
-        private readonly DataContext _dataContext;
+	[Route("api/[controller]")]
+	[ApiController]
+	public class AuthController : ControllerBase
+	{
+		private readonly IConfiguration _configuration;
+		private readonly IUserRepository _userRepository;
+		private readonly IUnitOfWork _uow;
 
-        public AuthController(IConfiguration configuration, DataContext dataContext)
-        {
-            _configuration = configuration;
-            _dataContext = dataContext;
-        }
+		public AuthController(IConfiguration configuration, IUnitOfWork uow, IUserRepository user)
+		{
+			_configuration = configuration;
+			_uow = uow;
+			_userRepository = user;
+		}
 
-        [HttpPost("register")]
-        public ActionResult<User> Register(UserViewModel request)
-        {
-            if (_dataContext.Users.Any(u => u.Email == request.Email))
-            {
-                return BadRequest("User already exists.");
-            }
+		[HttpPost("register")]
+		public async Task<IActionResult> Register(UserViewModel request)
+		{
+			var user = await _userRepository.GetAll();
 
-            string passwordHash
-                = BCrypt.Net.BCrypt.HashPassword(request.Password);
+			var teste = user.ToList().FirstOrDefault(f => f.Email.Equals(request.Email));
 
-            User newUser = new User
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                Password = passwordHash,
-                Cpf = request.Cpf,
-                Birthdate = request.Birthdate
-            };
+			if (teste != null) { return BadRequest("User already exists."); }
 
-            _dataContext.Users.Add(newUser);
-            _dataContext.SaveChanges();
+			string passwordHash
+				= BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-            return Ok(newUser);
-        }
+			User newUser = new User
+			{
+				FirstName = request.FirstName,
+				LastName = request.LastName,
+				Email = request.Email,
+				Password = passwordHash,
+				Cpf = request.Cpf,
+				Birthdate = request.Birthdate
+			};
 
-        [HttpPost("login")]
-        public ActionResult<User> Login(UserViewModel request)
-        {
-            var user = _dataContext.Users.FirstOrDefault(u => u.Email == request.Email);
+			_userRepository.Add(newUser);
+			await _uow.SaveChangesAsync();
 
-            if (user.Email != request.Email)
-            {
-                return BadRequest("User not found.");
-            }
+			return Ok(newUser);
+		}
 
-            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
-            {
-                return BadRequest("Wrong password.");
-            }
+		[HttpPost("login")]
+		public async Task<IActionResult> Login(UserViewModel request)
+		{
+			var user = await _userRepository.GetAll();
 
-            string token = CreateToken(user);
+			var teste = user.ToList().FirstOrDefault(a => a.Email.Equals(request.Email));
 
-            return Ok(token);
-        }
+			if (!BCrypt.Net.BCrypt.Verify(request.Password, teste.Password))
+			{
+				return BadRequest("Wrong password.");
+			}
 
-        private string CreateToken(User user)
-        {
-            List<Claim> claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, user.Email),
-                new Claim(ClaimTypes.Role, "Admin"),
-                new Claim(ClaimTypes.Role, "User"),
-            };
+			string token = CreateToken(teste);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value!));
+			return Ok(token);
+		}
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+		private string CreateToken(User user)
+		{
+			List<Claim> claims = new List<Claim> {
+				new Claim(ClaimTypes.Name, user.Email),
+				new Claim(ClaimTypes.Role, "Admin"),
+				new Claim(ClaimTypes.Role, "User"),
+			};
 
-            var token = new JwtSecurityToken(
-                    claims: claims,
-                    expires: DateTime.Now.AddDays(1),
-                    signingCredentials: creds
-                );
+			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+				_configuration.GetSection("AppSettings:Token").Value!));
 
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            return jwt;
-        }
-    }
+			var token = new JwtSecurityToken(
+					claims: claims,
+					expires: DateTime.Now.AddDays(1),
+					signingCredentials: creds
+				);
+
+			var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+			return jwt;
+		}
+	}
 }

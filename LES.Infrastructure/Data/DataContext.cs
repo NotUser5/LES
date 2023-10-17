@@ -1,12 +1,11 @@
 ﻿using LES.Domain.Core.Data;
 using LES.Domain.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace LES.Infrastructure.Data
 {
-    public class DataContext : DbContext, IUnitOfWork
+	public class DataContext : DbContext, IUnitOfWork
     {
 		protected readonly IConfiguration _configuration;
 
@@ -22,7 +21,7 @@ namespace LES.Infrastructure.Data
 		public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Card> Cards { get; set; }
-        public DbSet<Client> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Order> Orders { get; set; }

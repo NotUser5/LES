@@ -1,5 +1,6 @@
 ﻿using LES.Domain.Core.Data;
 using LES.Domain.Models;
+using LES.Infrastructure.Repository.Interface;
 using LES.Infrastructure.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,19 +8,19 @@ namespace LES.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class ClientController : ControllerBase
+	public class UserController : ControllerBase
 	{
-		private readonly IClientRepository _clientRepository;
+		private readonly IUserRepository _clientRepository;
 		private readonly IUnitOfWork _uow;
 
-		public ClientController(IClientRepository clientRepository, IUnitOfWork uow)
+		public UserController(IUserRepository clientRepository, IUnitOfWork uow)
 		{
 			_clientRepository = clientRepository;
 			_uow = uow;
 		}
 
 		[HttpPost]
-		public async Task CreateClient([FromBody] Client client)
+		public async Task CreateClient([FromBody] User client)
 		{
 			_clientRepository.Add(client);
 			await _uow.SaveChangesAsync();
@@ -66,9 +67,7 @@ namespace LES.API.Controllers
 			{
 				return NotFound();
 			}
-
-			client.Active = false;
-
+			
 			_uow.SaveChangesAsync();
 			return NoContent();
 		}
