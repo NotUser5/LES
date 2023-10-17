@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4A8F6639-97BE-4484-A29E-F09660387871}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LES.API", "LES.API\LES.API.csproj", "{E39E4BD2-EFFF-40D6-82F4-5144E5AA2B5B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LES.Domain", "LES.Domain\LES.Domain.csproj", "{0211F43F-811B-455E-A204-02ACDF16C901}"
@@ -32,11 +30,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{E39E4BD2-EFFF-40D6-82F4-5144E5AA2B5B} = {4A8F6639-97BE-4484-A29E-F09660387871}
-		{0211F43F-811B-455E-A204-02ACDF16C901} = {4A8F6639-97BE-4484-A29E-F09660387871}
-		{13A1869A-01D4-48A8-808F-6FB7BBD3FBA8} = {4A8F6639-97BE-4484-A29E-F09660387871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CC39F48-E3EC-445D-B4CA-0884EB6045E4}

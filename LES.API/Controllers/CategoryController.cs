@@ -19,10 +19,8 @@ namespace LES.API.Controllers
             _unitOfWork = iUnitOfWork;
         }
 
-
-        //todo: create service for business rule
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CategoryViewModel request)
+        public async Task Add([FromBody] CategoryViewModel request)
         {
             var category = new Category
             {
@@ -33,18 +31,8 @@ namespace LES.API.Controllers
 
             _categoryRepository.Add(category);
             await _unitOfWork.SaveChangesAsync();
-
-            var response = new CategoryViewModel
-            {
-                Id = category.Id,
-                Description = category.Description,
-                IsActive = category.IsActive
-            };
-
-            return Ok(response);
         }
 
-        //todo: create service for business rule
         [HttpGet]
 		public async Task<IActionResult> GetAllCategories()
         {

@@ -1,80 +1,73 @@
-﻿//using LES.Domain.Models;
-//using Microsoft.AspNetCore.Mvc;
+﻿using LES.Domain.Core.Data;
+using LES.Domain.Models;
+using LES.Infrastructure.Repository.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-//[Route("api/clients")]
-//[ApiController]
-//public class OrderController : ControllerBase
-//{
-//	private readonly AppDbContext _dbContext;
+[Route("api/[controller]")]
+[ApiController]
+public class OrderController : ControllerBase
+{
+	private readonly IUnitOfWork _uow;
+	private readonly IOrderRepository _orderRepository;
 
-//	public OrderController(AppDbContext dbContext)
-//	{
-//		_dbContext = dbContext;
-//	}
+	public OrderController(IUnitOfWork uow, IOrderRepository orderRepository)
+	{
+		_uow = uow;
+		_orderRepository = orderRepository;
+	}
 
-//	// POST: api/clients
-//	[HttpPost]
-//	public IActionResult CreateClient([FromBody] Client client)
-//	{
-//		// Add client to the database
-//		_dbContext.Clients.Add(client);
-//		_dbContext.SaveChanges();
-//		return CreatedAtAction("GetClientById", new { id = client.Id }, client);
-//	}
+	[HttpPost]
+	public async Task CreateClient([FromBody] Order order)
+	{
+		_orderRepository.Add(order);
+		await _uow.SaveChangesAsync();
+	}
 
-//	// GET: api/clients
-//	[HttpGet]
-//	public IActionResult GetClients()
-//	{
-//		var clients = _dbContext.Clients.ToList();
-//		return Ok(clients);
-//	}
+	[HttpGet]
+	public async Task<IActionResult> GetClients()
+	{
+		return Ok(_orderRepository.GetAll());
+	}
 
-//	// GET: api/clients/{id}
-//	[HttpGet("{id}")]
-//	public IActionResult GetClientById(int id)
-//	{
-//		var client = _dbContext.Clients.FirstOrDefault(c => c.Id == id);
-//		if (client == null)
-//		{
-//			return NotFound();
-//		}
-//		return Ok(client);
-//	}
+	[HttpGet("{id}")]
+	public IActionResult GetClientById(Guid id)
+	{
+		var client = _orderRepository.GetById(id);
+		if (client == null)
+		{
+			return NotFound();
+		}
+		return Ok(client);
+	}
 
-//	// PUT: api/clients/{id}
-//	[HttpPut("{id}")]
-//	public IActionResult UpdateClient(int id, [FromBody] Client updatedClient)
-//	{
-//		var client = _dbContext.Clients.FirstOrDefault(c => c.Id == id);
-//		if (client == null)
-//		{
-//			return NotFound();
-//		}
+	[HttpPut("{id}")]
+	public async Task<IActionResult> UpdateClient(Guid id, [FromBody] Client updatedClient)
+	{
+		var order = _orderRepository.GetById(id);
+		if (order == null)
+		{
+			return NotFound();
+		}
 
-//		// Update client properties
-//		client.FirstName = updatedClient.FirstName;
-//		client.LastName = updatedClient.LastName;
-//		// Update other properties as needed
+		//order. = updatedClient.FirstName;
+		//client.LastName = updatedClient.LastName;
 
-//		_dbContext.SaveChanges();
-//		return NoContent();
-//	}
+		await _uow.SaveChangesAsync();
+		return NoContent();
+	}
 
-//	// DELETE: api/clients/{id}
-//	[HttpDelete("{id}")]
-//	public IActionResult DeleteClient(int id)
-//	{
-//		var client = _dbContext.Clients.FirstOrDefault(c => c.Id == id);
-//		if (client == null)
-//		{
-//			return NotFound();
-//		}
+	[HttpDelete("{id}")]
+	public async Task<IActionResult> DeleteClient(Guid id)
+	{
+		var order = _orderRepository.GetById(id);
+		if (order == null)
+		{
+			return NotFound();
+		}
 
-//		// Perform logical delete by setting isEnabled flag
-//		client.IsEnabled = false;
+		order.Active = false;
 
-//		_dbContext.SaveChanges();
-//		return NoContent();
-//	}
-//}
+		_uow.SaveChangesAsync();
+		return NoContent();
+	}
+}

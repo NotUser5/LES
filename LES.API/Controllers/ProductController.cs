@@ -1,80 +1,53 @@
-﻿//using LES.Domain.Models;
-//using Microsoft.AspNetCore.Mvc;
+﻿using LES.Domain.Core.Data;
+using LES.Domain.Models;
+using LES.Domain.ViewModels;
+using LES.Infrastructure.Repository.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-//[Route("api/clients")]
-//[ApiController]
-//public class ProductController : ControllerBase
-//{
-//	private readonly AppDbContext _dbContext;
+namespace LES.API.Controllers
+{
+	[Route("api/[controller]")]
+	[ApiController]
+	public class ProductController : ControllerBase
+	{
+		private readonly IProductRepository _productRepository;
+		private readonly IUnitOfWork _unitOfWork;
 
-//	public ProductController(AppDbContext dbContext)
-//	{
-//		_dbContext = dbContext;
-//	}
+		public ProductController(IProductRepository productRepository, IUnitOfWork iUnitOfWork)
+		{
+			_productRepository = productRepository;
+			_unitOfWork = iUnitOfWork;
+		}
 
-//	// POST: api/clients
-//	[HttpPost]
-//	public IActionResult CreateClient([FromBody] Client client)
-//	{
-//		// Add client to the database
-//		_dbContext.Clients.Add(client);
-//		_dbContext.SaveChanges();
-//		return CreatedAtAction("GetClientById", new { id = client.Id }, client);
-//	}
+		[HttpPost]
+		public async Task<IActionResult> Add([FromBody] Product request)
+		{
+			var product = new Product
+			{
+				Id = Guid.NewGuid(),
+				Description = request.Description,
+				IsActive = request.IsActive,
+			};
 
-//	// GET: api/clients
-//	[HttpGet]
-//	public IActionResult GetClients()
-//	{
-//		var clients = _dbContext.Clients.ToList();
-//		return Ok(clients);
-//	}
+			_productRepository.Add(product);
+			await _unitOfWork.SaveChangesAsync();
 
-//	// GET: api/clients/{id}
-//	[HttpGet("{id}")]
-//	public IActionResult GetClientById(int id)
-//	{
-//		var client = _dbContext.Clients.FirstOrDefault(c => c.Id == id);
-//		if (client == null)
-//		{
-//			return NotFound();
-//		}
-//		return Ok(client);
-//	}
+			var response = new Product()
+			{
+				Id = product.Id,
+				Description = product.Description,
+				IsActive = product.IsActive
+			};
 
-//	// PUT: api/clients/{id}
-//	[HttpPut("{id}")]
-//	public IActionResult UpdateClient(int id, [FromBody] Client updatedClient)
-//	{
-//		var client = _dbContext.Clients.FirstOrDefault(c => c.Id == id);
-//		if (client == null)
-//		{
-//			return NotFound();
-//		}
+			return Ok(response);
+		}
 
-//		// Update client properties
-//		client.FirstName = updatedClient.FirstName;
-//		client.LastName = updatedClient.LastName;
-//		// Update other properties as needed
+		[HttpGet]
+		public async Task<IActionResult> GetAllCategories()
+		{
+			var categories = await _productRepository.GetAll();
 
-//		_dbContext.SaveChanges();
-//		return NoContent();
-//	}
-
-//	// DELETE: api/clients/{id}
-//	[HttpDelete("{id}")]
-//	public IActionResult DeleteClient(int id)
-//	{
-//		var client = _dbContext.Clients.FirstOrDefault(c => c.Id == id);
-//		if (client == null)
-//		{
-//			return NotFound();
-//		}
-
-//		// Perform logical delete by setting isEnabled flag
-//		client.IsEnabled = false;
-
-//		_dbContext.SaveChanges();
-//		return NoContent();
-//	}
-//}
+			return Ok(categories);
+		}
+	}
+}

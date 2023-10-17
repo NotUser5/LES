@@ -8,5 +8,6 @@
 		public DateTime OrderDate { get; set; }
 		public int ClientId { get; set; }
 		public Client Client { get; set; }
-	}
+        public bool Active { get; set; }
+    }
 }
