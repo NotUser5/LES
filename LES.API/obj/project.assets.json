@@ -824,6 +824,22 @@
           "build/Swashbuckle.AspNetCore.props": {}
         }
       },
+      "Swashbuckle.AspNetCore.Annotations/6.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0"
+        },
+        "compile": {
+          "lib/net7.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore.Filters/7.0.11": {
         "type": "package",
         "dependencies": {
@@ -1323,6 +1339,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.Identity.Stores": "7.0.11",
           "Microsoft.IdentityModel.Tokens": "6.24.0",
+          "Swashbuckle.AspNetCore.Annotations": "6.5.0",
           "System.IdentityModel.Tokens.Jwt": "6.24.0"
         },
         "compile": {
@@ -2708,6 +2725,32 @@
         "swashbuckle.aspnetcore.nuspec"
       ]
     },
+    "Swashbuckle.AspNetCore.Annotations/6.5.0": {
+      "sha512": "EcHd1z2pEdnpaBMTI9qjVxk6mFVGVMZ1n0ySC3fjrkXCQQ8O9fMdt9TxPJRKyjiTiTjvO9700jKjmyl+hPBinQ==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.annotations/6.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/net6.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net6.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net6.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/net7.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net7.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net7.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
+        "swashbuckle.aspnetcore.annotations.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore.Filters/7.0.11": {
       "sha512": "cuErEOqAHpO2NlQeufuQAhLHnVgRbi+ypK5kloZfjiyeep4nyJ4NsYUXXWaBr/3ScYJOM1Zb+1G+3W9gfz+Hgw==",
       "type": "package",
@@ -3727,27 +3770,28 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.11",
       "Swashbuckle.AspNetCore >= 6.5.0",
+      "Swashbuckle.AspNetCore.Annotations >= 6.5.0",
       "Swashbuckle.AspNetCore.Filters >= 7.0.11"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\JMTor\\.nuget\\packages\\": {},
+    "C:\\Users\\0220482122039\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.API\\LES.API.csproj",
+      "projectUniqueName": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.API\\LES.API.csproj",
       "projectName": "LES.API",
-      "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.API\\LES.API.csproj",
-      "packagesPath": "C:\\Users\\JMTor\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.API\\obj\\",
+      "projectPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.API\\LES.API.csproj",
+      "packagesPath": "C:\\Users\\0220482122039\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\JMTor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\0220482122039\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3756,18 +3800,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj": {
-              "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj"
+            "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\LES.Domain.csproj": {
+              "projectPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\LES.Domain.csproj"
             },
-            "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj"
+            "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj"
             }
           }
         }
@@ -3812,6 +3855,10 @@
             "target": "Package",
             "version": "[6.5.0, )"
           },
+          "Swashbuckle.AspNetCore.Annotations": {
+            "target": "Package",
+            "version": "[6.5.0, )"
+          },
           "Swashbuckle.AspNetCore.Filters": {
             "target": "Package",
             "version": "[7.0.11, )"
@@ -3836,7 +3883,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

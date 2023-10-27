@@ -3,6 +3,7 @@ using LES.Domain.Models;
 using LES.Domain.ViewModels;
 using LES.Infrastructure.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace LES.API.Controllers
 {
@@ -20,7 +21,8 @@ namespace LES.API.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Add([FromBody] Product request)
+        [SwaggerOperation(Summary = "Add a new product", Description = "Create a new product.")]
+        public async Task<IActionResult> Add([FromBody] Product request)
 		{
 			var product = new Product
 			{
@@ -43,7 +45,9 @@ namespace LES.API.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GetAllCategories()
+        [SwaggerOperation(Summary = "Get all products", Description = "Retrieve a list of all available products.")]
+
+        public async Task<IActionResult> GetAllCategories()
 		{
 			var categories = await _productRepository.GetAll();
 

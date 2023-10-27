@@ -4,6 +4,7 @@ using LES.Domain.ViewModels;
 using LES.Infrastructure.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -26,7 +27,8 @@ namespace LES.API.Controllers
 		}
 
 		[HttpPost("register")]
-		public async Task<IActionResult> Register(UserViewModel request)
+        [SwaggerOperation(Summary = "Register a new user", Description = "Registers a new user.")]
+        public async Task<IActionResult> Register(UserViewModel request)
 		{
 			var user = await _userRepository.GetAll();
 
@@ -54,7 +56,8 @@ namespace LES.API.Controllers
 		}
 
 		[HttpPost("login")]
-		public async Task<IActionResult> Login(UserViewModel request)
+        [SwaggerOperation(Summary = "Login for authentication", Description = "Authenticates a user.")]
+        public async Task<IActionResult> Login(UserViewModel request)
 		{
 			var user = await _userRepository.GetAll();
 

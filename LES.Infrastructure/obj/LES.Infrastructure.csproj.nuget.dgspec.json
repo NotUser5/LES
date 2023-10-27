@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj": {}
+    "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj": {
+    "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\LES.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\LES.Domain.csproj",
         "projectName": "LES.Domain",
-        "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj",
-        "packagesPath": "C:\\Users\\JMTor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\obj\\",
+        "projectPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\LES.Domain.csproj",
+        "packagesPath": "C:\\Users\\0220482122039\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\JMTor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\0220482122039\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -57,6 +56,10 @@
               "target": "Package",
               "version": "[6.24.0, )"
             },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[6.24.0, )"
@@ -78,24 +81,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj": {
+    "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj",
         "projectName": "LES.Infrastructure",
-        "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\LES.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\JMTor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Infrastructure\\LES.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\0220482122039\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\JMTor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\0220482122039\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -104,15 +107,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj": {
-                "projectPath": "C:\\Users\\JMTor\\source\\repos\\L.E.S\\LES.Domain\\LES.Domain.csproj"
+              "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\LES.Domain.csproj": {
+                "projectPath": "C:\\Users\\0220482122039\\Source\\Repos\\LES\\LES.Domain\\LES.Domain.csproj"
               }
             }
           }
@@ -162,7 +164,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -53,6 +53,20 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations();
+
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Ecommerce API",
+        Version = "1.0",
+        Description = "API for managing products and orders of Ecommerce."
+    });
+
+});
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

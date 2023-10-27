@@ -3,6 +3,7 @@ using LES.Domain.Models;
 using LES.Domain.ViewModels;
 using LES.Infrastructure.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace LES.API.Controllers
 {
@@ -20,6 +21,7 @@ namespace LES.API.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Add a new category", Description = "Create a new category.")]
         public async Task Add([FromBody] CategoryViewModel request)
         {
             var category = new Category
@@ -34,7 +36,8 @@ namespace LES.API.Controllers
         }
 
         [HttpGet]
-		public async Task<IActionResult> GetAllCategories()
+        [SwaggerOperation(Summary = "Get all categories", Description = "Retrieve a list of all categories.")]
+        public async Task<IActionResult> GetAllCategories()
         {
             var categories = await _categoryRepository.GetAll();
 
